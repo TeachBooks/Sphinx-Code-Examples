@@ -78,7 +78,7 @@ The `codex-start` and `codex-end` directives are used to create a code example w
 
 ````md
 :::{codex-start}
-:label: my-example
+:label: my-rendered-example
 
 Initial content of the directive.
 :::
@@ -94,7 +94,7 @@ For runnable code, include the code as you are used to outside any other directi
 This will be rendered as
 
 :::{codex-start}
-:label: my-example
+:label: my-rendered-example
 
 Initial content of the directive.
 :::
