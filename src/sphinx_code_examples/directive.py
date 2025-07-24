@@ -39,7 +39,7 @@ class SphinxCodexBaseDirective(SphinxDirective):
 
 class CodexDirective(SphinxCodexBaseDirective):
     """
-    An codex directive
+    A codex directive
 
     .. codex:: <subtitle> (optional)
        :label:

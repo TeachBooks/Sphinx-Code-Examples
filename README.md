@@ -4,6 +4,8 @@
 
 This Sphinx extension provides an interface to examples with runnable code.
 
+This extension includes code adapted from [sphinx-exercise](https://github.com/executablebooks/sphinx-exercise).
+
 ## Installation
 To install the Sphinx-Code-Examples, follow these steps:
 
