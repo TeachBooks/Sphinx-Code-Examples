@@ -203,7 +203,12 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     # Internal Title Nodes that don't need visit_ and depart_ methods
     # as they are resolved in post_transforms to docutil and sphinx nodes
-    app.add_node(codex_end_node)
+    app.add_node(
+        codex_end_node,
+        singlehtml=(lambda self, node: None, lambda self, node: None),
+        html=(lambda self, node: None, lambda self, node: None),
+        latex=(lambda self, node: None, lambda self, node: None),
+    )
     app.add_node(codex_title)
     app.add_node(codex_subtitle)
 
