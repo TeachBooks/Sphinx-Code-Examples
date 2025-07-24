@@ -101,7 +101,7 @@ Initial content of the directive.
 
 Other content of the directive, such as code blocks or text, can be added here.
 
-For runnable code, include the code as you are used to outside any other directive:
+For runnable code, include the code as you are used to outside any other directive.
 
 :::{codex-end}
 :::
