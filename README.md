@@ -1,8 +1,8 @@
-# Examples with runnable code
+# Examples with executable code
 
 ## Introduction
 
-This Sphinx extension provides an interface to examples with runnable code.
+This Sphinx extension provides an interface to examples with executable code.
 
 This extension includes code adapted from [sphinx-exercise](https://github.com/executablebooks/sphinx-exercise).
 
