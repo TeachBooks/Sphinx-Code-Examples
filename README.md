@@ -1,3 +1,4 @@
+(sphinx-code-examples)=
 # Examples with executable code
 
 ## Introduction
