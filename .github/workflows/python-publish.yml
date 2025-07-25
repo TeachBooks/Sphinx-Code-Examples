@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Publish <Your Package Name> Package to PyPI
+name: Publish Sphinx-Code-Examples Package to PyPI
 
 on:
   push
