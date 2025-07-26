@@ -34,4 +34,4 @@ sphinx:
 
 ## Documentation
 
-Further documentation for this extension is available in the [TeachBooks manual](https://teachbooks.io/manual/external/Sphinx-Code-Examples/MANUAL.html).
+Further documentation for this extension is available in the [TeachBooks manual](https://teachbooks.io/manual/code-examples/_git/github.com_TeachBooks_sphinx-code-examples/main/MANUAL.html).
