@@ -100,7 +100,7 @@ class ResolveTitlesInCodexs(SphinxPostTransform):
         if isinstance(title, codex_title):
             updated_title = docutil_nodes.title()
             if isinstance(node, codex_enumerable_node):
-                # Numfig (HTML) will use "Codex %s" so we just need the subtitle
+                # Numfig (HTML) will use f"{self.env.config.sphinx_codex_name} %s" so we just need the subtitle
                 if self.app.builder.format == "latex":
                     # Resolve Title
                     node_number = get_node_number(self.app, node, "codex")
@@ -108,7 +108,7 @@ class ResolveTitlesInCodexs(SphinxPostTransform):
                     updated_title += docutil_nodes.Text(title_text)
                 updated_title["title"] = self.app.config.numfig_format["codex"]
             else:
-                # Use default text "Codex"
+                # Use default text "self.env.config.sphinx_codex_name"
                 updated_title += title.children[0]
             # Parse Custom Titles
             if len(title.children) > 1:

@@ -78,7 +78,7 @@ class CodexDirective(SphinxCodexBaseDirective):
     }
 
     def run(self) -> List[Node]:
-        self.defaults = {"title_text": "Codex"}
+        self.defaults = {"title_text": self.env.config.sphinx_codex_name}
         self.serial_number = self.env.new_serialno()
 
         # Initialise Registry (if needed)

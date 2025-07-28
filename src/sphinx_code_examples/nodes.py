@@ -31,7 +31,7 @@ class codex_end_node(docutil_nodes.Admonition, docutil_nodes.Element):
 class codex_title(docutil_nodes.title):
     def default_title(self):
         title_text = self.children[0].astext()
-        if title_text == "Codex" or title_text == "Codex %s":
+        if title_text == self.env.config.sphinx_codex_name or title_text == f"{self.env.config.sphinx_codex_name} %s":
             return True
         else:
             return False
