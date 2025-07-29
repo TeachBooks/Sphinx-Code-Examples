@@ -7,7 +7,7 @@ include LICENSE
 include MANIFEST.in
 include README.md
 
-recursive-include src phinx_code_examples *.js
+recursive-include src *.js
 recursive-include src *.css
 
 recursive-include src *.json
