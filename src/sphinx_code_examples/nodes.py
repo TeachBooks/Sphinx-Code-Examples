@@ -12,6 +12,9 @@ from .latex import LaTeXMarkup
 logger = logging.getLogger(__name__)
 LaTeX = LaTeXMarkup()
 
+from sphinx.locale import get_translation
+MESSAGE_CATALOG_NAME = "codex"
+translate = get_translation(MESSAGE_CATALOG_NAME)
 
 # Nodes
 
@@ -31,7 +34,7 @@ class codex_end_node(docutil_nodes.Admonition, docutil_nodes.Element):
 class codex_title(docutil_nodes.title):
     def default_title(self):
         title_text = self.children[0].astext()
-        if title_text == self.env.config.sphinx_codex_name or title_text == f"{self.env.config.sphinx_codex_name} %s":
+        if title_text == translate(self.env.config.sphinx_codex_name) or title_text == f"{translate(self.env.config.sphinx_codex_name)} %s":
             return True
         else:
             return False

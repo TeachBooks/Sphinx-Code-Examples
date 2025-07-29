@@ -17,7 +17,13 @@ from .nodes import (
 from docutils import nodes
 from sphinx.util import logging
 
+from sphinx.locale import get_translation
+
 logger = logging.getLogger(__name__)
+
+MESSAGE_CATALOG_NAME = "codex"
+translate = get_translation(MESSAGE_CATALOG_NAME)
+
 
 
 class SphinxCodexBaseDirective(SphinxDirective):
@@ -78,7 +84,7 @@ class CodexDirective(SphinxCodexBaseDirective):
     }
 
     def run(self) -> List[Node]:
-        self.defaults = {"title_text": self.env.config.sphinx_codex_name}
+        self.defaults = {"title_text": translate(self.env.config.sphinx_codex_name)}
         self.serial_number = self.env.new_serialno()
 
         # Initialise Registry (if needed)

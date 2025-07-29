@@ -7,6 +7,7 @@ This package is an extension for sphinx to support examples with runnable code.
 
 """
 
+import os
 from pathlib import Path
 from typing import Any, Dict, Set, Union, cast
 from sphinx.config import Config
@@ -17,6 +18,7 @@ from docutils.nodes import Node
 from sphinx.util import logging
 from sphinx.util.fileutil import copy_asset
 import re
+from sphinx.locale import get_translation
 
 from ._compat import findall
 from .directive import (
@@ -50,9 +52,10 @@ from .post_transforms import (
 
 logger = logging.getLogger(__name__)
 
+MESSAGE_CATALOG_NAME = "codex"
+translate = get_translation(MESSAGE_CATALOG_NAME)
 
 # Callback Functions
-
 
 def purge_codexs(app: Sphinx, env: BuildEnvironment, docname: str) -> None:
     """Purge sphinx_codex registry"""
@@ -91,7 +94,7 @@ def init_numfig(app: Sphinx, config: Config) -> None:
     """Initialize numfig"""
 
     config["numfig"] = True
-    numfig_format = {"codex": f"{app.config.sphinx_codex_name} %s"}
+    numfig_format = {"codex": f"{translate(app.config.sphinx_codex_name)} %s"}
     # Merge with current sphinx settings
     numfig_format.update(config.numfig_format)
     config.numfig_format = numfig_format
@@ -224,6 +227,11 @@ def setup(app: Sphinx) -> Dict[str, Any]:
 
     app.add_post_transform(UpdateReferencesToEnumerated)
     app.add_post_transform(ResolveTitlesInCodexs)
+
+    # add translations
+    package_dir = os.path.abspath(os.path.dirname(__file__))
+    locale_dir = os.path.join(package_dir, "translations", "locales")
+    app.add_message_catalog(MESSAGE_CATALOG_NAME, locale_dir)
 
     return {
         "version": "builtin",
