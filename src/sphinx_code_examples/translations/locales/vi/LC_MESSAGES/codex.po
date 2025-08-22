@@ -13,3 +13,15 @@ msgstr "Ví dụ mã"
 
 msgid "Example"
 msgstr "Ví dụ"
+
+msgid "Textual"
+msgstr "Văn bản"
+
+msgid "This example also has a textual version. Use the button in the top right corner to switch to the textual version."
+msgstr "Ví dụ này cũng có phiên bản văn bản. Sử dụng nút ở góc trên bên phải để chuyển sang phiên bản văn bản."
+
+msgid "Visual"
+msgstr "Trực quan"
+
+msgid "This example also has a visual version. Use the button in the top right corner to switch to the visual version."
+msgstr "Ví dụ này cũng có phiên bản trực quan. Sử dụng nút ở góc trên bên phải để chuyển sang phiên bản trực quan."

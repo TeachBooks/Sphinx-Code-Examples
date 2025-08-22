@@ -1,13 +1,13 @@
-# Examples with executable code
+# Examples with executable code and visuals
 
 ## Introduction
 
-This Sphinx extension provides an interface to examples with executable code.
+This Sphinx extension provides an interface to examples with executable code and visuals.
 
 This extension includes code adapted from [sphinx-exercise](https://github.com/executablebooks/sphinx-exercise).
 
 ## Installation
-To install the Sphinx-Code-Examples, follow these steps:
+To install the Sphinx-Code-Examples extension, follow these steps:
 
 **Step 1: Install the Package**
 

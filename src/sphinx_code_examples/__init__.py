@@ -245,6 +245,14 @@ def set_asset_files(app: Sphinx) -> None:
     if not(app.config.sphinx_codex_icon_from_proof):
         app.add_css_file("codex.css")
 
+    app.add_js_file(None, body=f"let dualButtonTextual = '{translate('Textual')}';")
+    app.add_js_file(None, body=f"let dualButtonVisual = '{translate('Visual')}';")
+    app.add_js_file(None, body=f"let dualButtonTextualText = '{translate('This example also has a textual version. Use the button in the top right corner to switch to the textual version.')}';")
+    app.add_js_file(None, body=f"let dualButtonVisualText = '{translate('This example also has a visual version. Use the button in the top right corner to switch to the visual version.')}';")
+
+    app.add_js_file("dual_button.js")
+    app.add_css_file("dual_button.css")
+
 def copy_asset_files(app: Sphinx, exc: Union[bool, Exception]):
     """Copies required assets for formating in HTML"""
 
@@ -258,3 +266,23 @@ def copy_asset_files(app: Sphinx, exc: Union[bool, Exception]):
         if exc is None:
             for path in asset_files:
                 copy_asset(path, str(Path(app.outdir).joinpath("_static").absolute()))
+    
+    static_path = (
+        Path(__file__).parent.joinpath("assets", "html", "dual_button.css").absolute()
+    )
+    asset_files = [str(static_path)]
+
+    if exc is None:
+        for path in asset_files:
+            copy_asset(path, str(Path(app.outdir).joinpath("_static").absolute()))
+
+    static_path = (
+        Path(__file__).parent.joinpath("assets", "html", "dual_button.js").absolute()
+    )
+    asset_files = [str(static_path)]
+
+    if exc is None:
+        for path in asset_files:
+            copy_asset(path, str(Path(app.outdir).joinpath("_static").absolute()))
+    
+    

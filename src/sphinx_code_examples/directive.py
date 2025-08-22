@@ -2,6 +2,8 @@
 sphinx_code_examples.directive
 """
 
+from docutils.statemachine import ViewList
+
 from typing import List
 from docutils.nodes import Node
 
@@ -81,6 +83,38 @@ class CodexDirective(SphinxCodexBaseDirective):
         "class": directives.class_option,
         "nonumber": directives.flag,
         "hidden": directives.flag,
+        "en": directives.unchanged,
+        "zh-cn": directives.unchanged,
+        "zh-tw": directives.unchanged,
+        "hi": directives.unchanged,
+        "es": directives.unchanged,
+        "fr": directives.unchanged,
+        "ar": directives.unchanged,
+        "bn": directives.unchanged,
+        "ru": directives.unchanged,
+        "pt": directives.unchanged,
+        "id": directives.unchanged,
+        "ja": directives.unchanged,
+        "de": directives.unchanged,
+        "ko": directives.unchanged,
+        "tr": directives.unchanged,
+        "vi": directives.unchanged,
+        "ta": directives.unchanged,
+        "it": directives.unchanged,
+        "th": directives.unchanged,
+        "nl": directives.unchanged,
+        "el": directives.unchanged,
+        "pl": directives.unchanged,
+        "uk": directives.unchanged,
+        "fa": directives.unchanged,
+        "ms": directives.unchanged,
+        "sw": directives.unchanged,
+        "ro": directives.unchanged,
+        "cs": directives.unchanged,
+        "hu": directives.unchanged,
+        "he": directives.unchanged,
+        "sv": directives.unchanged,
+        "no": directives.unchanged,
     }
 
     def run(self) -> List[Node]:
@@ -113,6 +147,28 @@ class CodexDirective(SphinxCodexBaseDirective):
                 subtitle += subtitle_node
             title += subtitle
 
+        # add the stuff for the visual if given in the set language
+        # get lang of document
+        lang = self.env.config.language
+        # see if lang is a given option
+        result = self.options.get(lang, None)
+        if result is not None:
+            # a value has been given, so add it to the example
+            new_content = ViewList()
+            new_content.append('<div class="example-info" style="display: block;"></div>', "<generated>", 0)
+            new_content.append("", "<generated>", 0)
+            new_content.append('<div class="example-text" style="display: block;">', "<generated>", 0)
+            new_content.extend(self.content)   # add original content after new_content
+            new_content.append('</div>', "<generated>", 0)
+            new_content.append("", "<generated>", 0)
+            new_content.append(f'```{{video}} {result}',"<generated>",0)
+            new_content.append(':divclass: example-animation',"<generated>",0)
+            new_content.append(':stylediv: "display: none;"',"<generated>",0)
+            new_content.append(':width: 100%',"<generated>",0)
+            new_content.append(':aspectratio: auto 16/9',"<generated>",0)
+            new_content.append('```',"<generated>",0)
+            self.content = new_content
+
         # State Parsing
         section = nodes.section(ids=["codex-content"])
         self.state.nested_parse(self.content, self.content_offset, section)
@@ -141,6 +197,8 @@ class CodexDirective(SphinxCodexBaseDirective):
             classes = [f"{self.name}"]
         if self.options.get("class"):
             classes.extend(self.options.get("class"))
+        if result is not None:
+            classes.append("dual")
 
         self.options["name"] = label
 
@@ -172,7 +230,7 @@ class CodexDirective(SphinxCodexBaseDirective):
         # https://github.com/executablebooks/sphinx-jupyterbook-latex/blob/8401a27417d8c2dadf0365635bd79d89fdb86550/sphinx_jupyterbook_latex/transforms.py#L108
         if node.get("hidden", bool):
             return []
-
+        
         return [node]
 
 

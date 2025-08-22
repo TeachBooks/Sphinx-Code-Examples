@@ -13,3 +13,15 @@ msgstr "コード例"
 
 msgid "Example"
 msgstr "例"
+
+msgid "Textual"
+msgstr "テキスト"
+
+msgid "This example also has a textual version. Use the button in the top right corner to switch to the textual version."
+msgstr "この例にはテキスト版もあります。右上角のボタンを使用してテキスト版に切り替えてください。"
+
+msgid "Visual"
+msgstr "視覚的"
+
+msgid "This example also has a visual version. Use the button in the top right corner to switch to the visual version."
+msgstr "この例には視覚版もあります。右上角のボタンを使用して視覚版に切り替えてください。"

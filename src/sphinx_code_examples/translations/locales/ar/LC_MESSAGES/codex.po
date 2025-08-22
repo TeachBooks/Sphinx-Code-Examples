@@ -13,3 +13,15 @@ msgstr "مثال الكود"
 
 msgid "Example"
 msgstr "مثال"
+
+msgid "Textual"
+msgstr "نصي"
+
+msgid "This example also has a textual version. Use the button in the top right corner to switch to the textual version."
+msgstr "هذا المثال له أيضًا نسخة نصية. استخدم الزر في الزاوية العلوية اليمنى للتبديل إلى النسخة النصية."
+
+msgid "Visual"
+msgstr "بصري"
+
+msgid "This example also has a visual version. Use the button in the top right corner to switch to the visual version."
+msgstr "هذا المثال له أيضًا نسخة بصرية. استخدم الزر في الزاوية العلوية اليمنى للتبديل إلى النسخة البصرية."

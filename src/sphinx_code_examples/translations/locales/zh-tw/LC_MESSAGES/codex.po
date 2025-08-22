@@ -13,3 +13,15 @@ msgstr "代碼示例"
 
 msgid "Example"
 msgstr "示例"
+
+msgid "Textual"
+msgstr "文本的"
+
+msgid "This example also has a textual version. Use the button in the top right corner to switch to the textual version."
+msgstr "這個例子也有一個文本版本。使用右上角的按鈕切換到文本版本。"
+
+msgid "Visual"
+msgstr "視覺的"
+
+msgid "This example also has a visual version. Use the button in the top right corner to switch to the visual version."
+msgstr "這個例子也有一個可視化版本。使用右上角的按鈕切換到可視化版本。"

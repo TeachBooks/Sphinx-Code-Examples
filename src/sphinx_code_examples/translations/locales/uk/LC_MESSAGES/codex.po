@@ -13,3 +13,15 @@ msgstr "Приклад коду"
 
 msgid "Example"
 msgstr "Приклад"
+
+msgid "Textual"
+msgstr "Текстовий"
+
+msgid "This example also has a textual version. Use the button in the top right corner to switch to the textual version."
+msgstr "Цей приклад також має текстову версію. Використовуйте кнопку в правому верхньому куті, щоб перемкнутися на текстову версію."
+
+msgid "Visual"
+msgstr "Візуальний"
+
+msgid "This example also has a visual version. Use the button in the top right corner to switch to the visual version."
+msgstr "Цей приклад також має візуальну версію. Використовуйте кнопку в правому верхньому куті, щоб перемкнутися на візуальну версію."
