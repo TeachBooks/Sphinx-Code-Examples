@@ -174,6 +174,7 @@ def on_source_read_replace_prf_example(app, docname, source):
 
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension("sphinx_proof")
+    app.setup_extension("sphinx_iframes")
 
     app.add_config_value("sphinx_codex_name", "", "html")
     app.add_config_value("sphinx_codex_style_from_proof", True, "html")
