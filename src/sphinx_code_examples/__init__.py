@@ -126,6 +126,7 @@ def replace_prf_example(app: Sphinx, config: Config) -> None:
     # only called if merge_with_proof is True
     # overrides the prf:example directive to use codex directive
     app.add_directive('prf:example', CodexDirective,override=True)
+    app.add_directive_to_domain('prf','example', CodexDirective,override=True)
 
 def check_config(app: Sphinx, config: Config) -> None:
     # check validity of config  and act accordingly
