@@ -119,6 +119,13 @@ def doctree_read(app: Sphinx, document: Node) -> None:
 def on_config_inited(app: Sphinx, config: Config) -> None:
     check_config(app, config)
     init_numfig(app, config)
+    if config.sphinx_codex_merge_with_proof:
+        replace_prf_example(app, config)
+
+def replace_prf_example(app: Sphinx, config: Config) -> None:
+    # only called if merge_with_proof is True
+    # overrides the prf:example directive to use codex directive
+    app.add_directive('prf:example', CodexDirective,override=True)
 
 def check_config(app: Sphinx, config: Config) -> None:
     # check validity of config  and act accordingly
@@ -130,47 +137,6 @@ def check_config(app: Sphinx, config: Config) -> None:
     else:
         if config.sphinx_codex_name == "":
             config.sphinx_codex_name = "Code example"
-
-def on_source_read_replace_prf_example(app, docname, source):
-
-    if app.config.sphinx_codex_merge_with_proof:
-        # If the config is set to merge with proof, replace 'prf:example' with 'codex'
-
-        # Get the source text
-        text = source[0]
-        
-        # Check if this is a Jupyter notebook by looking at the source file
-        # Since docname doesn't include extension, we need to check the app's source file
-        is_notebook = False
-        if hasattr(app.env, 'found_docs') and docname in app.env.found_docs:
-            # Try to get the actual source file path
-            src_path = app.env.doc2path(docname, base=False)
-            is_notebook = src_path.endswith('.ipynb')
-                
-        # Initialize tracking of example labels if not exists
-        if not hasattr(app.env, 'codex_example_labels'):
-            app.env.codex_example_labels = set()
-        
-        # Find all labels from {prf:example} directives and track them
-        example_pattern = re.compile(r'\{prf:example\}.*?:label:\s*([^\s\n]+)', re.DOTALL)
-        for match in example_pattern.finditer(text):
-            label = match.group(1).strip()  # Remove whitespace and newlines
-            if is_notebook:
-                label = label.replace("\\n\",", "")
-            app.env.codex_example_labels.add(label)
-        
-        # Replace all occurrences of '{prf:example}' with '{codex}' in directive contexts
-        text = text.replace('{prf:example}', '{codex}')
-
-        # Replace all occurrences of '{prf:ref}`[^`]label[^`]' with '{numref}`[^`]label[^`]`'
-        if hasattr(app.env, 'codex_example_labels'):
-            for label in app.env.codex_example_labels:
-                # Create a regex pattern to match the specific label
-                label_pattern = re.compile(r"\{prf:ref\}(`[^`]*"+re.escape(label)+"[^`]*`)", re.DOTALL)
-                for match in label_pattern.finditer(text):
-                    text = text.replace(match.group(0), f'{{numref}}{match.group(1)}')
-
-        source[0] = text
 
 def setup(app: Sphinx) -> Dict[str, Any]:
     app.setup_extension("sphinx_proof")
@@ -184,7 +150,6 @@ def setup(app: Sphinx) -> Dict[str, Any]:
     app.connect("config-inited", on_config_inited)  # event order - 1
     app.connect("builder-inited", set_asset_files)  # event order - 2
     app.connect("env-purge-doc", purge_codexs)  # event order - 5 per file
-    app.connect("source-read", on_source_read_replace_prf_example) # event order - 6 per file
     app.connect("doctree-read", doctree_read)  # event order - 8
     app.connect("env-merge-info", merge_codexs)  # event order - 9
     app.connect("build-finished", copy_asset_files)  # event order - 16
